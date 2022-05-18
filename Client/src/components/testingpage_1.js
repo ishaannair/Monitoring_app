@@ -2,13 +2,12 @@ import React, {Component, useState, useEffect, useRef } from 'react';
 import Navbarfinal from './Navbar';
 import { Button, Layout, Switch, Table } from 'antd';
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
-class HomePage extends Component {
+
+class testingpage_1 extends Component {
     constructor(props) {
         super(props)
         this.state = {
-         
-            }
+        }
 
 
     }
@@ -75,51 +74,13 @@ class HomePage extends Component {
         },
     ];
     render() {
-        
-        const navigate= useNavigate;
     return (
         <div>
-           <div >testing</div>
-           <Button onClick={() => {navigate("test")}}>Test</Button>
-            {/* <Button>Test</Button>
-            <Layout>
-                <div className="table">
-                    <h3
-                        style={{
-                            position: "absolute",
-                            "margin-left": "auto",
-                            "margin-right": "auto",
-                            left: 0,
-                            right: 0,
-                            "text-align": "center",
-                            float: "center",
-                            "font-size": "3vh",
-                        }}
-                    >
-                        Your Audits
-                    </h3>
-                    <Switch
-                        defaultChecked="true"
-                        checkedChildren="Ongoing"
-                        unCheckedChildren="Expired"
-                        size="small"
-                        style={{
-                            float: "right",
-                            "margin-top": "2.5vw",
-                        }}
-                    ></Switch>
-                    <Table
-                        rowClassName={(record) =>
-                            record.total_score < 95 ? "red" : "green"
-                        }
-                        columns={columns}
-                        scroll={{ x: 800, y: "68vh" }}
-                        style={{ "padding-top": "6vw" }}
-                    />
-                </div>
-            </Layout> */}
+           <div >testing 2</div>
+           <Button onClick={() => {this.props.history.push('/')}}>Test 2</Button>
+ 
         </div>
     );
 }}
 
-export default HomePage;
+export default testingpage_1;
