@@ -1,7 +1,7 @@
 import './index.css';
 
 import Navbarfinal from './components/Navbar';
-import TestPage from './components/testingpage_1';
+import TestPage from './components/TestPage';
 import HomePage from './components/HomePage';
 
 import React, { useState, useEffect, useRef } from 'react';

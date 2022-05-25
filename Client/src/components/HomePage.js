@@ -3,16 +3,13 @@ import Navbarfinal from './Navbar';
 import { Button, Layout, Switch, Table } from 'antd';
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-class HomePage extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-         
-            }
 
 
-    }
-    columns = [
+const HomePage = (props) => {
+    const navigate = useNavigate();
+
+
+    const columns = [
         {
             title: "Addr.",
             dataIndex: "location",
@@ -74,52 +71,23 @@ class HomePage extends Component {
             },
         },
     ];
-    render() {
+    const handleSubmit = event => {
+        event.preventDefault();
+        }
+        // this.props.history.push('/CreateQuestion') ;
+            
+    const routeChange = () =>{ 
+        let path = `test`; 
+        navigate(path);
+        }
         
-        const navigate= useNavigate;
-    return (
+            return (
         <div>
            <div >testing</div>
-           <Button onClick={() => {navigate("test")}}>Test</Button>
-            {/* <Button>Test</Button>
-            <Layout>
-                <div className="table">
-                    <h3
-                        style={{
-                            position: "absolute",
-                            "margin-left": "auto",
-                            "margin-right": "auto",
-                            left: 0,
-                            right: 0,
-                            "text-align": "center",
-                            float: "center",
-                            "font-size": "3vh",
-                        }}
-                    >
-                        Your Audits
-                    </h3>
-                    <Switch
-                        defaultChecked="true"
-                        checkedChildren="Ongoing"
-                        unCheckedChildren="Expired"
-                        size="small"
-                        style={{
-                            float: "right",
-                            "margin-top": "2.5vw",
-                        }}
-                    ></Switch>
-                    <Table
-                        rowClassName={(record) =>
-                            record.total_score < 95 ? "red" : "green"
-                        }
-                        columns={columns}
-                        scroll={{ x: 800, y: "68vh" }}
-                        style={{ "padding-top": "6vw" }}
-                    />
-                </div>
-            </Layout> */}
+           <Button onClick={routeChange}>Test</Button>
+            
         </div>
     );
-}}
+}
 
 export default HomePage;

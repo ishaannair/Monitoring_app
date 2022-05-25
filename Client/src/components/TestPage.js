@@ -2,16 +2,13 @@ import React, {Component, useState, useEffect, useRef } from 'react';
 import Navbarfinal from './Navbar';
 import { Button, Layout, Switch, Table } from 'antd';
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
-class testingpage_1 extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-        }
+const TestPage = (props) => {
+    const navigate = useNavigate();
 
 
-    }
-    columns = [
+    const columns = [
         {
             title: "Addr.",
             dataIndex: "location",
@@ -73,14 +70,23 @@ class testingpage_1 extends Component {
             },
         },
     ];
-    render() {
-    return (
+    const handleSubmit = event => {
+        event.preventDefault();
+        }
+        // this.props.history.push('/CreateQuestion') ;
+            
+    const routeChange = () =>{ 
+        let path = `/`; 
+        navigate(path);
+        }
+        
+            return (
         <div>
-           <div >testing 2</div>
-           <Button onClick={() => {this.props.history.push('/')}}>Test 2</Button>
- 
+           <div >testing2</div>
+           <Button onClick={routeChange}>Test2</Button>
+            
         </div>
     );
-}}
+}
 
-export default testingpage_1;
+export default TestPage;
