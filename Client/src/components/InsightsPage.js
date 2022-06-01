@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Link, useNavigate } from "react-router-dom";
 import Navbarfinal from './Navbar';
 import { Button, Layout, Row, Col } from 'antd';
 import moment from "moment";
 import { Content } from 'antd/lib/layout/layout';
 
 
-
-function HomePage(props) {
-    const navigate = useNavigate();
-    const routeChange = () =>{ 
-        let path = `test`; 
-        navigate(path);
-        }
+function InsightsPage(props) {
     return (
         <div>
             <Navbarfinal />
@@ -25,9 +18,7 @@ function HomePage(props) {
                 </Layout> */}
                 <Row>
                     {/* <Col span={12}> */}
-                    <Link to="/insights">
-                        <Button className='button-test button-test2' onClick={navigate("insights")}>Data and Reports</Button>
-                    </Link>
+                    <Button className='button-test button-test2' >Data and Reports</Button>
                     {/* </Col> */}
                     {/* <Col span={12}> */}
                     <Button className='button-test button-test2' >Platform Tracking</Button>
@@ -44,4 +35,4 @@ function HomePage(props) {
     );
 }
 
-export default HomePage;
+export default InsightsPage;
