@@ -84,7 +84,7 @@ const HomePage = (props) => {
             return (
         <div>
            <div >testing</div>
-           <Button onClick={routeChange}>Test</Button>
+           <Button onClick={() =>{ navigate("test")}}>Test</Button>
             
         </div>
     );
