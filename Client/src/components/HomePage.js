@@ -9,10 +9,6 @@ import { Content } from 'antd/lib/layout/layout';
 
 function HomePage(props) {
     const navigate = useNavigate();
-    const routeChange = () =>{ 
-        let path = `test`; 
-        navigate(path);
-        }
     return (
         <div>
             <Navbarfinal />
@@ -25,7 +21,7 @@ function HomePage(props) {
                 </Layout> */}
                 <Row>
                     {/* <Col span={12}> */}
-                    <Link to="/insights">
+                    <Link to="insights">
                         <Button className='button-test button-test2' onClick={navigate("insights")}>Data and Reports</Button>
                     </Link>
                     {/* </Col> */}
