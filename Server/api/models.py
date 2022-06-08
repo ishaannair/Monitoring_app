@@ -18,3 +18,4 @@ class Room(models.Model):
     created_at= models.DateTimeField(auto_now_add=True)
 
 
+    # def is_host_this(host)
