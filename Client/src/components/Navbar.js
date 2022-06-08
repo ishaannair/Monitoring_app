@@ -9,12 +9,14 @@ import { ReactComponent as ArrowIcon } from '../icons/arrow.svg';
 import { ReactComponent as BoltIcon } from '../icons/bolt.svg';
 
 import React, { useState, useEffect, useRef } from 'react';
+import {Link, useNavigate } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 
 function Navbarfinal(props) {
+  const navigate = useNavigate();
   return (
     <Navbar>
-      <NavItem icon={<HouseIcon />} />
+      <NavItem onClick={navigate("/")} icon={<HouseIcon />} />
       <NavItem icon={<BellIcon />} />
       <NavItem icon={<MessengerIcon />} />
 
