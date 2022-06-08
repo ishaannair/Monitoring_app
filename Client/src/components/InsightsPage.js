@@ -10,15 +10,15 @@ const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function InsightsPage(props) {
-    function toggleDataSeries(e){
-		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-			e.dataSeries.visible = false;
-		}
-		else{
-			e.dataSeries.visible = true;
-		}
-		this.chart.render();
-	}
+    // function toggleDataSeries(e){
+	// 	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+	// 		e.dataSeries.visible = false;
+	// 	}
+	// 	else{
+	// 		e.dataSeries.visible = true;
+	// 	}
+	// 	this.chart.render();
+	// }
     const options = {
         theme: "light2",
         animationEnabled: true,
@@ -50,7 +50,7 @@ function InsightsPage(props) {
         },
         legend: {
             cursor: "pointer",
-            itemclick: toggleDataSeries
+            // itemclick: toggleDataSeries
         },
         data: [{
             type: "spline",
@@ -103,7 +103,7 @@ function InsightsPage(props) {
             <div>
                 <Row>
                     <CanvasJSChart options = {options} 
-			        	onRef={ref => this.chart = ref}
+			        	// onRef={ref => this.chart = ref}
 			        />
                 </Row>
             </div>
