@@ -22,7 +22,7 @@ function HomePage(props) {
                 <Row>
                     {/* <Col span={12}> */}
                     <Link to="insights">
-                        <Button className='button-test button-test2' onClick={navigate("insights")}>Data and Reports</Button>
+                        <Button className='button-test button-test2' onClick={() =>{ navigate("insights")}}>Data and Reports</Button>
                     </Link>
                     {/* </Col> */}
                     {/* <Col span={12}> */}
