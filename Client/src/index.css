@@ -162,3 +162,52 @@ a {
   transform: translateX(110%);
   transition: all var(--speed) ease;
 }
+
+/*Try to follow Weebly Website font*/
+@font-face {
+  font-family: 'Pompiere';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/pompiere/v15/VEMyRoxis5Dwuyeov5Wq7DE.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.button-test {
+  position: relative;
+  width: 33%;
+  height: 200px;
+  margin: 5px;
+  font-family: 'Pompiere';
+  font-size: xx-large;
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition-duration: 0.4s;
+}
+
+.button-test2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button-test2:active {
+  background-color: #5c5c5c;
+}
+
+.header{
+  font-size: 43px;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Quicksand";
+  font-weight: "Bolder";
+}
+
+.content{
+  margin-top: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.padding{
+  margin-top: 20px;
+}
