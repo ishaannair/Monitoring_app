@@ -1,9 +1,12 @@
 import React, {Component, useState, useEffect, useRef } from 'react';
 import Navbarfinal from './Navbar';
-import { Button, Layout, Switch, Table, Row } from 'antd';
+import { Button, Layout, Row, Col, Card, Avatar, Image } from 'antd';
+import { Content } from 'antd/lib/layout/layout';
 import moment from "moment";
 import { useNavigate, Link } from "react-router-dom";
-
+import { AntDesignOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import Dino from "./dino.png"
 
 const HomePage = (props) => {
     const navigate = useNavigate();
@@ -22,28 +25,35 @@ const HomePage = (props) => {
         <div>
             <Navbarfinal />
             <div>
-                {/* <Layout>
-                    <Content style={{ padding: '0 50px' }}>
-                        <Button className='button-test' >Test</Button>
-                        <Button className='button-test' >Test</Button>
+                <Layout style={{height: "690px"}}>
+                    <Content>
+                        <Row>
+                            <Col span={12} offset={12}>
+                                <Button className='button-test button-test2' style={{ width: "97%", textAlign: 'center', fontSize: 40, margin: "10px", border: true, borderColor: 'black', borderRadius: 10, height: '300px' }} onClick={() =>{ navigate("insights")}}>
+                                    Data and Reports
+                                </Button>
+                            </Col>
+                            
+                        </Row>
+                        <Row>
+                        <Col span={8}>
+                                <Button className='button-test button-test2' style={{ width: "95%", textAlign: 'center', fontSize: 40, margin: "10px", border: true, borderColor: 'black', borderRadius: 10, height: '300px' }} >
+                                    Platform Tracking
+                                </Button>
+                            </Col>        
+                        <Col span={8}>
+                                <Button className='button-test button-test2' style={{ width: "95%", textAlign: 'center', fontSize: 40, margin: "10px", border: true, borderColor: 'black', borderRadius: 10, height: '300px' }} >
+                                    Blog Posts
+                                </Button>
+                            </Col>
+                            <Col span={8}>
+                                <Button className='button-test button-test2' style={{ width: "95%", textAlign: 'center', fontSize: 40, margin: "10px", border: true, borderColor: 'black', borderRadius: 10, height: '300px' }} >
+                                    User Profile
+                                </Button>
+                            </Col>
+                        </Row>
                     </Content>
-                </Layout> */}
-                <Row>
-                    {/* <Col span={12}> */}
-                    <Link to="insights">
-                        <Button className='button-test button-test2' onClick={() =>{ navigate("example")}}>Data and Reports</Button>
-                    </Link>
-                    {/* </Col> */}
-                    {/* <Col span={12}> */}
-                    <Button className='button-test button-test2' >Platform Tracking</Button>
-                    {/* </Col> */}
-                    {/* <Col span={12}> */}
-                    <Button className='button-test button-test2' >Blog Posts</Button>
-                    {/* </Col> */}
-                    {/* <Col span={12}> */}
-                    <Button className='button-test button-test2' >User Profile</Button>
-                    {/* </Col> */}
-                </Row>
+                </Layout>
             </div>
         </div >
     );

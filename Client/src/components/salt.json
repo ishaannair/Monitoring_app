@@ -1,38 +1,38 @@
 [
     {
       "Time": "17:01",
-      "Output": 48
+      "Salt": 960
     },
     {
       "Time": "17:02",
-      "Output": 47
+      "Salt": 900
     },
     {
       "Time": "17:03",
-      "Output": 42
+      "Salt": 970
     },
     {
       "Time": "17:04",
-      "Output": 50
+      "Salt": 950
     },
     {
       "Time": "17:05",
-      "Output": 48
+      "Salt": 930
     },
     {
       "Time": "17:06",
-      "Output": 38
+      "Salt": 1004
     },
     {
       "Time": "17:07",
-      "Output": 44
+      "Salt": 956
     },
     {
       "Time": "17:08",
-      "Output": 48
+      "Salt": 946
     },
     {
       "Time": "17:09",
-      "Output": 48
+      "Salt": 976
     }
   ]

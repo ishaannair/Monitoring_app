@@ -173,9 +173,9 @@ a {
 }
 
 .button-test {
-  position: relative;
+  /* position: relative; */
   width: 33%;
-  height: 200px;
+  /* height: 200px; */
   margin: 5px;
   font-family: 'Pompiere';
   font-size: xx-large;
@@ -204,10 +204,15 @@ a {
 
 .content{
   margin-top: 50px;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 50px;
 }
 
 .padding{
   margin-top: 20px;
+}
+
+.entryCard{
+  font-family: 'Pompiere';
 }
