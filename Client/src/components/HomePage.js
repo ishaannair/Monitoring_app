@@ -7,6 +7,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { AntDesignOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Dino from "./dino.png"
+import axios from 'axios'; 
+// import JSON;
 
 const HomePage = (props) => {
     const navigate = useNavigate();
@@ -15,7 +17,18 @@ const HomePage = (props) => {
         event.preventDefault();
         }
         // this.props.history.push('/CreateQuestion') ;
-            
+    const  api=axios.create({
+        baseURL:'http://127.0.0.1:8000/'
+    })
+
+    api.get('view-chart?format=json').then(res=>{
+        console.log(res.data);
+        localStorage.setItem("graph", JSON.stringify(res.data));
+    })
+    
+    
+
+
     const routeChange = () =>{ 
         let path = `test`; 
         navigate(path);
