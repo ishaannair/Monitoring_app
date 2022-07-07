@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Link, useNavigate } from "react-router-dom";
 import Navbarfinal from './Navbar';
-import { Button, Layout, Row, Col, Card, Tabs, Menu } from 'antd';
 import { Content, Header } from 'antd/lib/layout/layout';
+import { Button, Layout, Row, Col, Typography, Card, Space, Card, Tabs, Menu  } from 'antd';
+import moment from "moment";
+import axios from 'axios'; 
 import Graph from './Graph';
 import NavBar from './NewNav';
 import '../styles/result.css';
 var input = require("./input.json");
+// var graphData=require("./input.json");
+var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
 var salt = require("./salt.json");
 var pH = require("./pH.json");
@@ -34,6 +38,22 @@ const items = [
         key: '/profile',
     },
 ]
+function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update state to force render
+    // An function that increment 👆🏻 the previous state like here 
+    // is better than directly setting `value + 1`
+}
+
+
+const { Title, Paragraph, Text} = Typography;
+
+const  api=axios.create({
+    baseURL:'http://127.0.0.1:8000/'
+})
+
+
+
 
 function InsightsPage(props) {
     const navigate = useNavigate();
@@ -42,6 +62,13 @@ function InsightsPage(props) {
         navigate(e.key);
       };
 
+    api.get('view-chart?format=json').then(res=>{
+        console.log("backend data",res.data);
+        graphData=res.data;
+         console.log("graphdata",graphData);
+    })
+    const forceUpdate = useForceUpdate();
+    console.log("graphdata",graphData);
     return (
         <div>
             {/* <Navbarfinal /> */}

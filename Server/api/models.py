@@ -2,6 +2,10 @@ from statistics import mode
 from django.db import models
 import string
 import random
+
+# from django.forms import Input
+
+
 def generate_unique_code():
     length=6
     while True:
@@ -10,12 +14,39 @@ def generate_unique_code():
             break
     return code
 # Create your models here.
+
+class charts_view(models.Model):
+    Time=models.TimeField(blank=True, null=True)
+    Input=models.IntegerField(null=False,default=1)
+
+
+
+
 class Room(models.Model):
-    code = models.CharField(max_length=8,default ="",unique=True)
+    code = models.CharField(max_length=8,default =generate_unique_code,unique=True)
     host = models.CharField(max_length=50,unique=True)
     Guest_can_pause = models.BooleanField(null=False,default=False)
     Votes_to_skip=models.IntegerField(null=False,default=1)
     created_at= models.DateTimeField(auto_now_add=True)
 
 
+class charts(models.Model):
+    code = models.CharField(max_length=8,default =generate_unique_code,unique=True)
+    host = models.CharField(max_length=50,unique=True)
+    Guest_can_pause = models.BooleanField(null=False,default=False)
+    Votes_to_skip=models.IntegerField(null=False,default=1)
+    created_at= models.DateTimeField(auto_now_add=True)
+
     # def is_host_this(host)
+
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)

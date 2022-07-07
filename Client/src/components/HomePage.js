@@ -7,7 +7,8 @@ import { useNavigate, Link } from "react-router-dom";
 import NavBar from './NewNav';
 import Dino from "./dino.png"
 import '../styles/result.css';
-
+import axios from 'axios'; 
+// import JSON;
 const items = [
     {
       label: 'Home Page',
@@ -23,6 +24,7 @@ const items = [
     },
 ]
 
+
 const HomePage = (props) => {
     const navigate = useNavigate();
 
@@ -35,6 +37,17 @@ const HomePage = (props) => {
         console.log('click ', e);
         navigate(e.key);
         };
+    const  api=axios.create({
+        baseURL:'http://127.0.0.1:8000/'
+    })
+
+    api.get('view-chart?format=json').then(res=>{
+        console.log(res.data);
+        localStorage.setItem("graph", JSON.stringify(res.data));
+    })
+    
+    
+
 
     const routeChange = () =>{ 
         let path = `test`; 
