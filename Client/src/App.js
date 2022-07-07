@@ -8,6 +8,7 @@ import MyComponent from './components/InsightsTest';
 import React, { useState, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import {Route, BrowserRouter as Router,Routes ,Link} from "react-router-dom";
+import ProfilePage from './components/ProfilePage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/test" element={<TestPage/>} />
         <Route path="insights" element={<InsightsPage/>} />
-        <Route path="insightT" element={<MyComponent/>} />
+        <Route path="profile" element={<ProfilePage/>} />
       </Routes >
         
     
