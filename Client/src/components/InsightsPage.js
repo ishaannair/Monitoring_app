@@ -2,19 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import {Link, useNavigate } from "react-router-dom";
 import Navbarfinal from './Navbar';
 import { Content, Header } from 'antd/lib/layout/layout';
-import { Button, Layout, Row, Col, Typography, Card, Space, Card, Tabs, Menu  } from 'antd';
+import { Button, Layout, Row, Col, Typography, Card, Space, Tabs, Menu  } from 'antd';
 import moment from "moment";
 import axios from 'axios'; 
 import Graph from './Graph';
 import NavBar from './NewNav';
 import '../styles/result.css';
+import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
 // var graphData=require("./input.json");
 var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
 var salt = require("./salt.json");
 var pH = require("./pH.json");
-
+var proximity= require("./Proximity.json")
 
 const { TabPane } = Tabs;
 
@@ -116,8 +117,25 @@ function InsightsPage(props) {
                                 </Col>
                                 </Row>
                             </TabPane>
+                            
                             <TabPane tab="Proximity" key="3">
                             Content of Tab Pane 3
+                            <Row className='padding'>
+                                <Col span={11}>
+                                    <Card title="Proximity" size="large" hoverable={true}>
+                                        <HexGridDemo/>
+                                    </Card>
+                                </Col>
+                                <Col span={1}></Col>
+                                <Col span={11}>
+                                    <Card title="Proximity Visual" size="small" hoverable={true}>
+                                        <Graph data={proximity} x={'Time'} y={'Distance_left'}/>
+                                    </Card>
+                                    <Card title="Proximity Visual" size="large" hoverable={true}>
+                                        <Graph data={proximity} x={'Time'} y={'Distance_right'}/>
+                                    </Card>
+                                </Col>
+                                </Row>
                             </TabPane>
                         </Tabs>
                     </Content>

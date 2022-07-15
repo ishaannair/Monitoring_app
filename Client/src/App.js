@@ -21,6 +21,7 @@ function App() {
         <Route path="/test" element={<TestPage/>} />
         <Route path="insights" element={<InsightsPage/>} />
         <Route path="profile" element={<ProfilePage/>} />
+
       </Routes >
         
     

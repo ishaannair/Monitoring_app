@@ -1,0 +1,43 @@
+.myDiv_right {
+    background: linear-gradient(to right, green 0%, green 50%, red 50%, red 100%);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    padding-top: -10%;
+    margin-left: 10%;
+    }
+
+
+.myDiv_left {   
+    background: linear-gradient(to right, red 0%, red 50%, green 50%, green 100%);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    padding-top: -10%;
+    margin-left: 15%;
+    }
+
+.myDiv_none {
+    background: linear-gradient(to right, green 0%, green 50%, green 50%, green 100%);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    padding-top: -10%;
+    margin-left: 10vw;
+    }
+.myDiv_All {
+    background: linear-gradient(to right, red 0%, red 50%, red 50%, red 100%);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+    padding-top: -10%;
+    margin-left: 10vw;
+    }

@@ -1,0 +1,57 @@
+[
+    {
+      "Time": "17:01",
+      "Distance_left": 10,
+      "Distance_right": 15
+    },
+    {
+      "Time": "17:02",
+      "Distance_left": 15,
+      "Distance_right": 20
+    },
+    {
+      "Time": "17:03",
+      "Distance_left": 20,
+      "Distance_right": 15
+    },
+    {
+      "Time": "17:04",
+      "Distance_left": 15,
+      "Distance_right": 30
+    },
+    {
+      "Time": "17:05",
+      "Distance_left": 25,
+      "Distance_right": 20
+    },
+    {
+      "Time": "17:06",
+      "Distance_left": 30,
+      "Distance_right": 25
+    },
+    {
+      "Time": "17:07",
+      "Distance_left": 10,
+      "Distance_right": 10
+    },
+    {
+      "Time": "17:08",
+      "Distance_left": 50,
+      "Distance_right": 35
+    },
+    {
+      "Time": "17:09",
+      "Distance_left": 20,
+      "Distance_right": 25
+    },
+    {
+      "Time": "17:10",
+      "Distance_left": 10,
+      "Distance_right": 25
+    },
+    {
+      "Time": "17:11",
+      "Distance_left": 20,
+      "Distance_right": 10
+    }
+  ]
