@@ -8,6 +8,10 @@ import axios from 'axios';
 import Graph from './Graph';
 import NavBar from './NewNav';
 import '../styles/result.css';
+import Hexagon from 'react-hexagon'
+import { test_hexagon } from './platform/test_hexagon';
+import Chart from 'react-apexcharts';
+
 import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
 // var graphData=require("./input.json");
@@ -15,15 +19,57 @@ var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
 var salt = require("./salt.json");
 var pH = require("./pH.json");
-var proximity= require("./Proximity.json")
-
+// var proximity= require("./Proximity.json")
+var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
 
 const onChange = (key) => {
     console.log(key);
 };
-
-
+const color=['#c1c1c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#0F0F0F', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1']
+const series= [100, 100, 100, 100, 100,100,100, 100, 100, 100, 55,100,100, 100, 100, 100, 100,100];
+// const [color, setColor] = useState(['#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#ff0000', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF']);
+const options={
+    "chart": {
+      "width": 380,
+      "type": 'polarArea'
+    }, 
+    
+    "fill": {
+      "opacity": 0.5,
+      colors:color
+    },
+    "stroke": {
+      "width": 1,
+      "show":true,
+      "opacity":0,
+      "colors": color,
+   
+    },
+    "yaxis": {
+      "show": true
+    },
+    "legend": {
+      "show": false
+    },
+    "plotOptions": {
+      "polarArea": {
+        "rings": {
+          "strokeWidth": 1
+        },
+        "spokes": {
+          "strokeWidth": 1
+        },
+      }
+    },
+    "theme": {
+      "monochrome": {
+        "enabled": true,
+        "shadeTo": 'dark',
+        "shadeIntensity": 1
+      }
+    }
+  };
 
 const items = [
     {
@@ -57,19 +103,21 @@ const  api=axios.create({
 
 
 function InsightsPage(props) {
+
     const navigate = useNavigate();
     const onClick = (e) => {
         console.log('click ', e);
         navigate(e.key);
       };
 
-    api.get('view-chart?format=json').then(res=>{
-        console.log("backend data",res.data);
+    api.get('index?format=json').then(res=>{
+        console.log("backend data new",proximity);
+        // proximity=res.data;
         graphData=res.data;
          console.log("graphdata",graphData);
     })
     const forceUpdate = useForceUpdate();
-    console.log("graphdata",graphData);
+    // console.log("graphdata",graphData);
     return (
         <div>
             {/* <Navbarfinal /> */}
@@ -122,8 +170,24 @@ function InsightsPage(props) {
                             Content of Tab Pane 3
                             <Row className='padding'>
                                 <Col span={11}>
+                                    
+                                    <Card title="Proximity" size="large" hoverable={true} style={{content:"black"}}>
+                                    <div >
+                                    <div style={{}}>
+                                    <Chart options={options} series={series} type="polarArea" />
+                                    
+                                    </div>
+                                    <div style={{width:"30%",marginTop:"-58%",marginBottom:"40%",marginLeft:"36.5%"}}>
+                                     <Hexagon
+                                        style={{stroke: '#42873f'}}
+                                    />
+                                    </div>
+                                    </div>
+                                    </Card>
                                     <Card title="Proximity" size="large" hoverable={true}>
-                                        <HexGridDemo/>
+                                    <div>
+                                    <img src="/HexaponicsLayout.jpg" alt="image" style={{width:"100%"}}/>
+                                    </div>
                                     </Card>
                                 </Col>
                                 <Col span={1}></Col>

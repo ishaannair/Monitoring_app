@@ -19,6 +19,12 @@ class charts_view(models.Model):
     Time=models.TimeField(blank=True, null=True)
     Input=models.IntegerField(null=False,default=1)
 
+class Data(models.Model):
+    name =  models.CharField(max_length=50,unique=True)
+    stack = models.CharField(max_length=50,unique=True)
+    framework = models.CharField(max_length=50,unique=True)
+    # Votes_to_skip=models.IntegerField(null=False,default=1)
+    # created_at= models.DateTimeField(auto_now_add=True)
 
 
 

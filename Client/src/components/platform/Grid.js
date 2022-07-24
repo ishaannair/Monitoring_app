@@ -3,7 +3,7 @@ import HexagonGrid from "./hexagongrid.js";
 import times from "lodash/times";
 import "./styles.css";
 
-var proximity_data= require("../Proximity.json")
+var proximity_data=JSON.parse(localStorage.getItem("proximity")).data;
 
 const HexGridDemo = () => {
     function useForceUpdate(){

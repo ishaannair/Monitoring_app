@@ -46,7 +46,10 @@ const HomePage = (props) => {
         console.log(res.data);
         localStorage.setItem("graph", JSON.stringify(res.data));
     })
-    
+    api.get('index?format=json').then(res=>{
+        console.log(res.data);
+        localStorage.setItem("proximity", JSON.stringify(res.data));
+    })
     
 
 
