@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Link, useNavigate } from "react-router-dom";
-import Navbarfinal from './Navbar';
 import { Content, Header } from 'antd/lib/layout/layout';
 import { Button, Layout, Row, Col, Typography, Card, Space, Tabs, Menu, Carousel } from 'antd';
-import moment from "moment";
 import axios from 'axios'; 
 import Graph from './Graph';
-import NavBar from './NewNav';
 import '../styles/result.css';
 import Tickets from '../reports/Tickets';
 var input = require("./input.json");

@@ -4288,7 +4288,7 @@ a.ant-btn-sm {
   min-height: 48px;
   margin-bottom: -1px;
   padding: 0 24px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #2B4560;
   font-weight: 500;
   font-size: 16px;
   background: transparent;
@@ -4570,6 +4570,7 @@ a.ant-btn-sm {
   line-height: 1.5715;
   list-style: none;
   font-feature-settings: 'tnum';
+  border-radius: 15px;
 }
 .ant-carousel .slick-slider {
   position: relative;
@@ -4749,7 +4750,7 @@ a.ant-btn-sm {
   padding: 0;
   color: transparent;
   font-size: 0;
-  background: #fff;
+  background: #000;
   border: 0;
   border-radius: 1px;
   outline: none;
@@ -4765,7 +4766,7 @@ a.ant-btn-sm {
   width: 24px;
 }
 .ant-carousel .slick-dots li.slick-active button {
-  background: #fff;
+  background: #000;
   opacity: 1;
 }
 .ant-carousel .slick-dots li.slick-active:hover,
