@@ -8,7 +8,8 @@ const Graph = (props) => {
   useEffect(() => {
     // asyncFetch();
     setData(props.data)
-    console.log(props)
+    console.log(props.data)
+    // console.log(typeof(props.data))
   }, []);
 
   var avg = 0

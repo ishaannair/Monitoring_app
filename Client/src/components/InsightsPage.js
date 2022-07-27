@@ -20,7 +20,7 @@ var input = require("./input.json");
 var output = require("./output.json");
 var salt = require("./salt.json");
 var pH = require("./pH.json");
-var proximity= require("./Proximity.json")
+// var proximity= require("./Proximity.json")
 // var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
 
@@ -97,12 +97,9 @@ const  api=axios.create({
     baseURL:'http://127.0.0.1:8000/'
 })
 
-
-
-
 function InsightsPage(props) {
     const [diagram, setDiagram] = useState("/HexaponicsEnergyLayout.jpg");
-    // const [proximity, setProximity] = useState()
+    const [proximity, setProximity] = useState()
     // const [input, setInput] = useState()
     const navigate = useNavigate();
     const onClick = (e) => {
@@ -125,9 +122,9 @@ function InsightsPage(props) {
 
     useEffect(() => {
         api.get('index?format=json').then(res=>{
-            console.log("backend data new",proximity);
+            // console.log("backend data new",proximity);
             // proximity=res.data;
-            // setProximity(res.data)
+            setProximity(res.data.data)
             
             // console.log("proximity", proximity)
             // graphData=res.data;
@@ -137,13 +134,11 @@ function InsightsPage(props) {
         
     })
 
-    const forceUpdate = useForceUpdate();
-    // console.log("graphdata",graphData);
+    // const forceUpdate = useForceUpdate();
+    // console.log("proximity:", proximity)
     return (
         <div>
-            {/* <Navbarfinal /> */}
                 <Layout style={{minHeight:"100vh"}}>
-                    {/* <NavBar page={"/insights"}/> */}
                 {/* <Header>
                     <div className="logo" />
                     <Menu
@@ -221,12 +216,16 @@ function InsightsPage(props) {
                                         </Col>
                                         <Col span={1}></Col>
                                         <Col span={11}>
-                                            <Card title="Proximity Visual" size="small" hoverable={true}>
+                                            {/* <Row> */}
+                                            <Card title="Proximity Visual" size="large" hoverable={true}>
                                                 <Graph data={proximity} x={'Time'} y={'Distance_left'}/>
                                             </Card>
+                                            {/* </Row>
+                                            <Row> */}
                                             <Card title="Proximity Visual" size="large" hoverable={true}>
                                                 <Graph data={proximity} x={'Time'} y={'Distance_right'}/>
                                             </Card>
+                                            {/* </Row> */}
                                         </Col>
                                     </Row>
                                 </TabPane>
