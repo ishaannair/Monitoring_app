@@ -11,21 +11,19 @@ import '../styles/result.css';
 import Hexagon from 'react-hexagon'
 import { test_hexagon } from './platform/test_hexagon';
 import Chart from 'react-apexcharts';
+import Tickets from '../reports/Tickets';
 
-import HexGridDemo from "./platform/Grid.js";
+// import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
 // var graphData=require("./input.json");
-var graphData=JSON.parse(localStorage.getItem("graph"));
+// var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
 var salt = require("./salt.json");
 var pH = require("./pH.json");
-// var proximity= require("./Proximity.json")
-var proximity=JSON.parse(localStorage.getItem("proximity")).data;
+var proximity= require("./Proximity.json")
+// var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
 
-const onChange = (key) => {
-    console.log(key);
-};
 const color=['#c1c1c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#0F0F0F', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1']
 const series= [100, 100, 100, 100, 100,100,100, 100, 100, 100, 55,100,100, 100, 100, 100, 100,100];
 // const [color, setColor] = useState(['#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#ff0000', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF']);
@@ -103,27 +101,50 @@ const  api=axios.create({
 
 
 function InsightsPage(props) {
-
+    const [diagram, setDiagram] = useState("/HexaponicsEnergyLayout.jpg");
+    // const [proximity, setProximity] = useState()
+    // const [input, setInput] = useState()
     const navigate = useNavigate();
     const onClick = (e) => {
         console.log('click ', e);
         navigate(e.key);
       };
+    
+    const onChange = (key) => {
+        console.log(key);
+        if (key == 1) {
+            setDiagram("/HexaponicsEnergyLayout.jpg")
+        } else if (key == 2) {
+            setDiagram("/HexaponicsWaterLayout.jpg")
+        } else if (key == 3) {
+            setDiagram("/HexaponicsProximityLayout.jpg")
+        }
+    };
+    // setInput(require("./input.json"));
+    // var proximity = null
 
-    api.get('index?format=json').then(res=>{
-        console.log("backend data new",proximity);
-        // proximity=res.data;
-        graphData=res.data;
-         console.log("graphdata",graphData);
+    useEffect(() => {
+        api.get('index?format=json').then(res=>{
+            console.log("backend data new",proximity);
+            // proximity=res.data;
+            // setProximity(res.data)
+            
+            // console.log("proximity", proximity)
+            // graphData=res.data;
+            // setGraphData(res.data)
+            // console.log("graphdata",graphData);
+        })
+        
     })
+
     const forceUpdate = useForceUpdate();
     // console.log("graphdata",graphData);
     return (
         <div>
             {/* <Navbarfinal /> */}
-                <Layout style={{height:"100vh"}}>
+                <Layout style={{minHeight:"100vh"}}>
                     {/* <NavBar page={"/insights"}/> */}
-                <Header>
+                {/* <Header>
                     <div className="logo" />
                     <Menu
                         theme="dark"
@@ -132,76 +153,86 @@ function InsightsPage(props) {
                         items={items}
                         onClick={onClick}
                     />
-                </Header>
+                </Header> */}
                     <Content className='content'>
-                        <Tabs defaultActiveKey="1" onChange={onChange}>
-                            <TabPane tab="Energy" key="1">
-                                <Row className='padding'>
-                                <Col span={11}>
-                                    <Card title="Energy Input" size="large" hoverable={true}>
-                                        <Graph data={input} x={'Time'} y={'Input'}/>
-                                    </Card>
-                                </Col>
-                                <Col span={1}></Col>
-                                <Col span={11}>
-                                    <Card title="Energy Output" size="large" hoverable={true}>
-                                        <Graph data={output} x={'Time'} y={'Output'}/>
-                                    </Card>
-                                </Col>
-                                </Row>
-                            </TabPane>
-                            <TabPane tab="Water" key="2">
-                                <Row className='padding'>
-                                <Col span={11}>
-                                    <Card title="Water pH" size="large" hoverable={true}>
-                                        <Graph data={pH} x={'Time'} y={'pH'}/>
-                                    </Card>
-                                </Col>
-                                <Col span={1}></Col>
-                                <Col span={11}>
-                                    <Card title="Water Salinity" size="large" hoverable={true}>
-                                        <Graph data={salt} x={'Time'} y={'Salt'}/>
-                                    </Card>
-                                </Col>
-                                </Row>
-                            </TabPane>
-                            
-                            <TabPane tab="Proximity" key="3">
-                            Content of Tab Pane 3
-                            <Row className='padding'>
-                                <Col span={11}>
-                                    
-                                    <Card title="Proximity" size="large" hoverable={true} style={{content:"black"}}>
-                                    <div >
-                                    <div style={{}}>
-                                    <Chart options={options} series={series} type="polarArea" />
-                                    
-                                    </div>
-                                    <div style={{width:"30%",marginTop:"-58%",marginBottom:"40%",marginLeft:"36.5%"}}>
-                                     <Hexagon
-                                        style={{stroke: '#42873f'}}
-                                    />
-                                    </div>
-                                    </div>
-                                    </Card>
-                                    <Card title="Proximity" size="large" hoverable={true}>
-                                    <div>
-                                    <img src="/HexaponicsLayout.jpg" alt="image" style={{width:"100%"}}/>
-                                    </div>
-                                    </Card>
-                                </Col>
-                                <Col span={1}></Col>
-                                <Col span={11}>
-                                    <Card title="Proximity Visual" size="small" hoverable={true}>
-                                        <Graph data={proximity} x={'Time'} y={'Distance_left'}/>
-                                    </Card>
-                                    <Card title="Proximity Visual" size="large" hoverable={true}>
-                                        <Graph data={proximity} x={'Time'} y={'Distance_right'}/>
-                                    </Card>
-                                </Col>
-                                </Row>
-                            </TabPane>
-                        </Tabs>
+                        
+                    <Tickets/>
+                    <p/>
+                        <Row>
+                        <Col span={8}>
+                        <Card size="large" hoverable={true}>
+                            <div>
+                            <img src={diagram} alt="image" style={{width:"100%"}}/>
+                            </div>
+                        </Card>
+                        </Col>
+                        <Col span={2}/>
+                        <Col span={14}>
+                            <Tabs defaultActiveKey="1" onChange={onChange}>
+                                <TabPane tab="Energy" key="1">
+                                    <Row className='padding'>
+                                    <Col span={11}>
+                                        <Card title="Energy Input" size="large" hoverable={true}>
+                                            <Graph data={input} x={'Time'} y={'Input'}/>
+                                        </Card>
+                                    </Col>
+                                    <Col span={1}></Col>
+                                    <Col span={11}>
+                                        <Card title="Energy Output" size="large" hoverable={true}>
+                                            <Graph data={output} x={'Time'} y={'Output'}/>
+                                        </Card>
+                                    </Col>
+                                    </Row>
+                                </TabPane>
+                                <TabPane tab="Water" key="2">
+                                    <Row className='padding'>
+                                    <Col span={11}>
+                                        <Card title="Water pH" size="large" hoverable={true}>
+                                            <Graph data={pH} x={'Time'} y={'pH'}/>
+                                        </Card>
+                                    </Col>
+                                    <Col span={1}></Col>
+                                    <Col span={11}>
+                                        <Card title="Water Salinity" size="large" hoverable={true}>
+                                            <Graph data={salt} x={'Time'} y={'Salt'}/>
+                                        </Card>
+                                    </Col>
+                                    </Row>
+                                </TabPane>
+                                
+                                <TabPane tab="Proximity" key="3">
+                                    <Row className='padding'>
+                                        <Col span={11}>
+                                            
+                                            <Card title="Proximity" size="large" hoverable={true} style={{content:"black"}}>
+                                            <div >
+                                            <div style={{}}>
+                                            <Chart options={options} series={series} type="polarArea" />
+                                            
+                                            </div>
+                                            <div style={{width:"30%",marginTop:"-58%",marginBottom:"40%",marginLeft:"36.5%"}}>
+                                            <Hexagon
+                                                style={{stroke: '#42873f'}}
+                                            />
+                                            </div>
+                                            </div>
+                                            </Card>
+                                            
+                                        </Col>
+                                        <Col span={1}></Col>
+                                        <Col span={11}>
+                                            <Card title="Proximity Visual" size="small" hoverable={true}>
+                                                <Graph data={proximity} x={'Time'} y={'Distance_left'}/>
+                                            </Card>
+                                            <Card title="Proximity Visual" size="large" hoverable={true}>
+                                                <Graph data={proximity} x={'Time'} y={'Distance_right'}/>
+                                            </Card>
+                                        </Col>
+                                    </Row>
+                                </TabPane>
+                            </Tabs>
+                        </Col>
+                        </Row>
                     </Content>
                 </Layout>
         </div >

@@ -20,6 +20,8 @@
     "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
     "chart.js": "^3.8.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
     "react-apexcharts": "^1.4.0",

@@ -8,26 +8,17 @@ const Graph = (props) => {
   useEffect(() => {
     // asyncFetch();
     setData(props.data)
-    console.log(props.data)
+    console.log(props)
   }, []);
 
   var avg = 0
   var total = 0
-  for (var i = 0; i < props.data.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     total += props.data[i][props.y]
     // console.log(total)
   }
-  avg = total/props.data.length
-  console.log(avg)
-
-//   const asyncFetch = () => {
-//     fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
-//       .then((response) => response.json())
-//       .then((json) => setData(json))
-//       .catch((error) => {
-//         console.log('fetch data failed', error);
-//       });
-//   };
+  avg = total/data.length
+  // console.log(avg)
 
   const config = {
     data,

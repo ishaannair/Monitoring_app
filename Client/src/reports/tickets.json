@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Ticket 1",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 2,
+    "title": "Ticket 2",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 3,
+    "title": "Ticket 3",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 4,
+    "title": "Ticket 4",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 5,
+    "title": "Ticket 5",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 6,
+    "title": "Ticket 6",
+    "request": "Blue",
+    "status": "completed",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 7,
+    "title": "Ticket 7",
+    "request": "Blue",
+    "status": "in_progress",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 8,
+    "title": "Ticket 8",
+    "request": "Blue",
+    "status": "in_progress",
+    "updated_at": "2020-06-13"
+  },
+  {
+    "id": 9,
+    "title": "Ticket 9",
+    "request": "Blue",
+    "status": "in_progress",
+    "updated_at": "2020-06-13"
+  }
+]
