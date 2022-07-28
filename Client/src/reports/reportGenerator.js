@@ -1,66 +1,66 @@
-import React, { useEffect, useRef }  from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { renderToString } from "react-dom/server";
-import { Button, Layout, Row, Col, Menu } from 'antd';
-import { Content, Header } from 'antd/lib/layout/layout';
 // Date Fns is used to format the dates we receive
 // from our API call
 import { format } from "date-fns";
-import Dino from '../components/dino.png'
+import AgriArk from '../components/AgriArk.png'
 
 // define a generatePDF function that accepts a tickets argument
-const generatePDF = (tickets) => {
+const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSaltTickets) => {
   // initialize jsPDF
   const doc = new jsPDF();
 
   // define the columns we want and their titles
-  const tableColumn = ["Id", "Title", "Issue", "Status", "Closed on"];
-  const tableColumn2 = ["Id", "Title", "Issue", "Status", "Closed on"];
+  const energyInColumns = ["Time", "Input"];
+  const energyOutColumns = ["Time", "Output"];
+  const waterPhColumns = ["Time", "pH"];
+  const waterSaltColumns = ["Time", "Salt"];
+
   // define an empty array of rows
-  const tableRows = [];
-  const tableRows2 = [];
+  const energyInRows = [];
+  const energyOutRows = [];
+  const waterPhRows = [];
+  const waterSaltRows = [];
 
   var ref = document.getElementById("test");
   
   // for each ticket pass all its data into an array
-  tickets.forEach(ticket => {
+  energyInTickets.forEach(ticket => {
     const ticketData = [
-      ticket.id,
-      ticket.title,
-      ticket.request,
-      ticket.status,
-      // called date-fns to format the date on the ticket
-      format(new Date(ticket.updated_at), "yyyy-MM-dd")
+      ticket.Time,
+      ticket.Input
     ];
     // push each tickcet's info into a row
-    tableRows.push(ticketData);
-    tableRows2.push(ticketData);
+    energyInRows.push(ticketData);
   });
   
-  // doc.autoTable(tableColumn, tableRows, { startY: 20 });
-  // doc.save();
-  // doc.autoTable(tableColumn, tableRows, { startY: 20 });
-  var headRows = function() {
-    return [{
-      id: "ID",
-      name: "Name",
-    }];
-  };
+  energyOutTickets.forEach(ticket => {
+    const ticketData = [
+      ticket.Time,
+      ticket.Output
+    ];
+    // push each tickcet's info into a row
+    energyOutRows.push(ticketData);
+  });
 
-  var bodyRows = function(rowCount) {
-    rowCount = rowCount || 10;
-    let body = [];
+  waterPhTickets.forEach(ticket => {
+    const ticketData = [
+      ticket.Time,
+      ticket.pH
+    ];
+    // push each tickcet's info into a row
+    waterPhRows.push(ticketData);
+  });
 
-    for (var i = 1; i <= rowCount; i++) {
-      body.push({
-        id: i,
-        name: "Name " + i
-      });
-    }
-
-    return body;
-  }
+  waterSaltTickets.forEach(ticket => {
+    const ticketData = [
+      ticket.Time,
+      ticket.Salt
+    ];
+    // push each tickcet's info into a row
+    waterSaltRows.push(ticketData);
+  });
 
   var headerFooter = function() {
     // Header
@@ -68,9 +68,9 @@ const generatePDF = (tickets) => {
     doc.setTextColor(40);
     doc.setFont('normal');
     if (base64Img) {
-        doc.addImage(Dino, 'JPEG', 15, 15, 10, 10);
+        doc.addImage(AgriArk, 'JPEG', 15, 15, 10, 10);
     }
-    doc.text("Report for: " + selectedDate, 15 + 15, 22);
+    doc.text("Seaform Report for: " + selectedDate, 15 + 15, 22);
 
     // Footer
     var str = "Page " + doc.internal.getNumberOfPages()
@@ -89,26 +89,36 @@ const generatePDF = (tickets) => {
   var totalPagesExp = "{total_pages_count_string}";
   var base64Img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAG1BMVEXMzMyWlpaqqqq3t7exsbGcnJy+vr6jo6PFxcUFpPI/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQUlEQVQ4jWNgGAWjgP6ASdncAEaiAhaGiACmFhCJLsMaIiDAEQEi0WXYEiMCOCJAJIY9KuYGTC0gknpuHwXDGwAA5fsIZw0iYWYAAAAASUVORK5CYII='
   const selectedDate = new Date().toDateString()
+
   doc.autoTable({
-    head: [tableColumn],
-    body: tableRows,
+    head: [energyInColumns],
+    body: energyInRows,
     didDrawPage: headerFooter,
     margin: {top: 30}
   });
   doc.autoTable({
-    head: [tableColumn2],
-    body: tableRows2,
+    head: [energyOutColumns],
+    body: energyOutRows,
     didDrawPage: headerFooter,
     margin: {top: 30}
   });
-  // doc.autoTable(tableColumn, tableRows, { startY: 20 });
-  // doc.autoTable(tableColumn, tableRows, { startY: 100 });
+  doc.autoTable({
+    head: [waterPhColumns],
+    body: waterPhRows,
+    didDrawPage: headerFooter,
+    margin: {top: 30}
+  });
+  doc.autoTable({
+    head: [waterSaltColumns],
+    body: waterSaltRows,
+    didDrawPage: headerFooter,
+    margin: {top: 30}
+  });
+
   const date = Date().split(" ");
   // // we use a date string to generate our filename.
   const dateStr = date[0] + "_" + date[1] + "_" + date[2] + "_" + date[3] + "_" + date[4];
   // // ticket title. and margin-top + margin-left
-  // doc.text("Closed tickets within the last one month.", 14, 15);
-  // doc.addImage(Dino, 'png', 10, 78, 12, 15)
   // // we define the name of our PDF file.
   doc.save(`Monthly_Report_${dateStr}.pdf`);
 };

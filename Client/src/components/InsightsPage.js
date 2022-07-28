@@ -151,7 +151,7 @@ function InsightsPage(props) {
                 </Header> */}
                     <Content className='content'>
                         
-                    <Tickets/>
+                    <Tickets eInData={input} eOutData={output} wPhData={pH} wSaltData={salt}/>
                     <p/>
                         <Row>
                         <Col span={8}>

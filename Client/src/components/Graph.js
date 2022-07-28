@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom';
 import { Line } from '@ant-design/plots';
 
 const Graph = (props) => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    // asyncFetch();
-    setData(props.data)
-    console.log(props.data)
-    // console.log(typeof(props.data))
-  }, []);
+  // useEffect(() => {
+  //   // asyncFetch();
+  //   setData(props.data)
+  //   console.log(props.data)
+  //   // console.log(typeof(props.data))
+  // }, []);
+  
+  var data = props.data
+  console.log(data)
 
   var avg = 0
   var total = 0
-  for (var i = 0; i < data.length; i++) {
+  for (var i = 0; i < props.data.length; i++) {
     total += props.data[i][props.y]
     // console.log(total)
   }

@@ -5,9 +5,12 @@ import { Button } from 'antd';
 import '../styles/result.css';
 var inTick = require("./tickets.json");
 
-const Tickets = () => {
+const Tickets = (props) => {
   
-  const [tickets, setTickets] = useState([]);
+  const [energyInTickets, setEInTickets] = useState([]);
+  const [energyOutTickets, setEOutTickets] = useState([]);
+  const [waterPhTickets, setWPhTickets] = useState([]);
+  const [waterSaltTickets, setWSaltTickets] = useState([]);
   
   // const r = useRef(null);
   // Ref.current.innerHTML = cache; 
@@ -20,12 +23,15 @@ const Tickets = () => {
     //   } catch (err) {
     //     console.log("error");
     //   }
-    setTickets(inTick)
+    setEInTickets(props.eInData)
+    setEOutTickets(props.eOutData)
+    setWPhTickets(props.wPhData)
+    setWSaltTickets(props.wSaltData)
     };
     getAllTickets();
   }, []);
 
-    const reportTickets = tickets.filter(ticket => ticket.status === "completed");
+    // const reportTickets = tickets.filter(ticket => ticket.status === "completed");
   
   return (
     <div>
@@ -34,7 +40,7 @@ const Tickets = () => {
           {
             <Button
               className="btn btn-primary"
-              onClick={() => generatePDF(reportTickets)}
+              onClick={() => generatePDF(energyInTickets, energyOutTickets, waterPhTickets, waterSaltTickets)}
             >
               Generate Monthly Report
             </Button>
