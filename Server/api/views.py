@@ -6,6 +6,7 @@ from .models import Room,charts_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import pyrebase
+import datetime
 
 # Create your views here.
 config={
@@ -27,15 +28,23 @@ database=firebase.database()
 
 def index(request):
         #accessing our firebase data and storing it in a variable
-        name = database.child('Distance').get().val()
         all_data=[]
+        name=database.child('esp').order_by_key().limit_to_last(10).get().val()
+        
+        # print("testing",len(name))
         for i in range(len(name)):
             temp={}
-            keys=list(name.keys())
-            temp['Distance_left']=int(float(name[keys[i]]['distance']))
-            temp['Distance_right']=int(float(name[keys[i]]['distance']))
-            temp['Time']=name[keys[i]]['time']
-            all_data.append (temp)
+            timestamp=list(name.keys())
+            # print((timestamp[i]))
+            key=list(name[timestamp[i]].keys())[0]
+            # print(key)
+            temp['distance_00']=int(float(name[timestamp[i]][key]['distance_00']))
+            temp['distance_01']=int(float(name[timestamp[i]][key]['distance_01']))
+            temp['distance_02']=int(float(name[timestamp[i]][key]['distance_02']))
+            # temp['distance_01']=int(float(name[1][keys[i]]['distance']))
+            # temp['distance_02']=int(float(name[2][keys[i]]['distance']))
+            temp['Time']=datetime.datetime.fromtimestamp(int(timestamp[i]))
+            all_data.append(temp)
         # stack = database.child('Data').child('Stack').get().val()
         # framework = database.child('Data').child('Framework').get().val()
     

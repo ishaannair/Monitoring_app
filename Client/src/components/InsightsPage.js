@@ -24,7 +24,8 @@ var pH = require("./pH.json");
 const { TabPane } = Tabs;
 
 const color=['#c1c1c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#0F0F0F', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1','#c0c0c1', '#c0c0c1', '#c0c0c1']
-const series= [100, 100, 100, 100, 100,100,100, 100, 100, 100, 55,100,100, 100, 100, 100, 100,100];
+const series= [100, 100, 100, 100, 100,100,100, 100, 100, 100, 100,100,100, 100, 100, 100, 100,100];
+
 // const [color, setColor] = useState(['#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#ff0000', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF']);
 const options={
     "chart": {
@@ -101,6 +102,12 @@ function InsightsPage(props) {
     const [proximity, setProximity] = useState()
     const [forecasts, setForecasts] = useState()
     const [lastMinute, setLastMinute] = useState()
+
+    if(proximity!=null){
+        series[0]=proximity[0]["distance_00"]
+    }
+    
+    
     // const [input, setInput] = useState()
     const navigate = useNavigate();
     const onClick = (e) => {
@@ -161,6 +168,11 @@ function InsightsPage(props) {
         api.get('index?format=json').then(res=>{
             setProximity(res.data.data)
             pullData()
+            
+            console.log("proximity", proximity)
+            // graphData=res.data;
+            // setGraphData(res.data)
+            // console.log("graphdata",graphData);
         })
         
     })
@@ -257,12 +269,12 @@ function InsightsPage(props) {
                                         <Col span={11}>
                                             {/* <Row> */}
                                             <Card title="Proximity Visual" size="large" hoverable={true}>
-                                                <Graph data={proximity} x={'Time'} y={'Distance_left'}/>
+                                                <Graph data={proximity} x={'Time'} y={'distance_00'}/>
                                             </Card>
                                             {/* </Row>
                                             <Row> */}
                                             <Card title="Proximity Visual" size="large" hoverable={true}>
-                                                <Graph data={proximity} x={'Time'} y={'Distance_right'}/>
+                                                <Graph data={proximity} x={'Time'} y={'distance_01'}/>
                                             </Card>
                                             {/* </Row> */}
                                         </Col>
