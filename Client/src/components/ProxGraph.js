@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Line } from '@ant-design/plots';
 
-const Graph = (props) => {
+const ProxGraph = (props) => {
   // const [data, setData] = useState([]);
 
   var data = props.data
@@ -40,5 +40,5 @@ const Graph = (props) => {
   );
 };
 
-export default Graph
+export default ProxGraph
 // ReactDOM.render(<Graph />, document.getElementById('container'));

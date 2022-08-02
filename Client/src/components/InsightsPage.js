@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Link, useNavigate } from "react-router-dom";
-import Navbarfinal from './Navbar';
 import { Content, Header } from 'antd/lib/layout/layout';
 import { Button, Layout, Row, Col, Typography, Card, Space, Tabs, Menu  } from 'antd';
 import moment from "moment";
 import axios from 'axios'; 
 import Graph from './Graph';
-import NavBar from './NewNav';
 import '../styles/result.css';
 import Hexagon from 'react-hexagon'
 import { test_hexagon } from './platform/test_hexagon';
 import Chart from 'react-apexcharts';
 import Tickets from '../reports/Tickets';
+import WeatherDisplay from './WeatherDisplay';
 
 // import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
@@ -98,8 +97,10 @@ const  api=axios.create({
 })
 
 function InsightsPage(props) {
-    const [diagram, setDiagram] = useState("/HexaponicsEnergyLayout.jpg");
+    const [diagram, setDiagram] = useState("/Energy_HexaponicsLayout3.jpg");
     const [proximity, setProximity] = useState()
+    const [forecasts, setForecasts] = useState()
+    const [lastMinute, setLastMinute] = useState()
     // const [input, setInput] = useState()
     const navigate = useNavigate();
     const onClick = (e) => {
@@ -110,26 +111,56 @@ function InsightsPage(props) {
     const onChange = (key) => {
         console.log(key);
         if (key == 1) {
-            setDiagram("/HexaponicsEnergyLayout.jpg")
+            setDiagram("/Energy_HexaponicsLayout3.jpg")
         } else if (key == 2) {
-            setDiagram("/HexaponicsWaterLayout.jpg")
+            setDiagram("/Water_HexaponicsLayout3.jpg")
         } else if (key == 3) {
-            setDiagram("/HexaponicsProximityLayout.jpg")
+            setDiagram("/HexaponicsProximityLayout3.jpg")
         }
     };
     // setInput(require("./input.json"));
     // var proximity = null
+    const pullData = () => {
+        // let momentObj = moment(date + time, "YYYY-MM-DDLT");
+        console.log(moment().diff(lastMinute, 'minutes'))
+        if (lastMinute == null || moment().diff(lastMinute, 'minutes') >= 5) {
+            setLastMinute(moment())
+            let combined = moment().format("YYYY-MM-DD[T]HH:mm:ss");
+            let weatherURL =
+            "https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=" +
+            encodeURIComponent(combined);
+                fetch(weatherURL)
+                .then((res) => res.json())
+                .then(
+                    (result) => {
+                    var forecasts = [];
+                    // console.log(result);
+                    if (result.message === "invalid datetime format") {
+                        setForecasts([]);
+                        forecasts = [];
+                    } else {
+                        setForecasts(result.items[0].forecasts);
+                        forecasts = result.items[0].forecasts;
+                    }
+        
+                    //   setLocations(
+                    //     forecasts.map((forecast) => {
+                    //       return { value: forecast.area };
+                    //     })
+                    //   );
+                    },
+        
+                    (error) => {
+                    console.log("Error Getting Results");
+                    }
+                );
+            }
+        }
 
     useEffect(() => {
         api.get('index?format=json').then(res=>{
-            // console.log("backend data new",proximity);
-            // proximity=res.data;
             setProximity(res.data.data)
-            
-            // console.log("proximity", proximity)
-            // graphData=res.data;
-            // setGraphData(res.data)
-            // console.log("graphdata",graphData);
+            pullData()
         })
         
     })
@@ -155,11 +186,19 @@ function InsightsPage(props) {
                     <p/>
                         <Row>
                         <Col span={8}>
+                        <Row>
                         <Card size="large" hoverable={true}>
                             <div>
                             <img src={diagram} alt="image" style={{width:"100%"}}/>
                             </div>
                         </Card>
+                        </Row>
+                        <Row>
+                            <WeatherDisplay
+                            selectedValue={"Changi"}
+                            forecasts={forecasts}
+                            />
+                        </Row>
                         </Col>
                         <Col span={2}/>
                         <Col span={14}>
@@ -232,6 +271,7 @@ function InsightsPage(props) {
                             </Tabs>
                         </Col>
                         </Row>
+                        
                     </Content>
                 </Layout>
         </div >
