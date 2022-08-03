@@ -53,6 +53,23 @@ def index(request):
         return JsonResponse(context)
 
 
+def sendPHBalancer(request):
+        #accessing our firebase data and storing it in a variable
+        all_data=[]
+        name=database.child('PHbalancer').order_by_key().limit_to_last(10).get().val()
+        
+        for i in range(len(name)):
+            temp={}
+            timestamp=list(name.keys())
+            key=list(name[timestamp[i]].keys())[0]
+            temp['TDS']=int(float(name[timestamp[i]][key]['TDS']))
+            temp['pH']=int(float(name[timestamp[i]][key]['pH']))
+            temp['Time']=datetime.datetime.fromtimestamp(int(timestamp[i]))
+            all_data.append(temp)
+        context = {"data":all_data}
+        return JsonResponse(context)
+
+
 # room
 class DataView(generics.ListAPIView):
     queryset=Room.objects.all()
