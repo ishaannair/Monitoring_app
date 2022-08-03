@@ -6,9 +6,9 @@ const ProxGraph = (props) => {
 
   var data = []
   for (let i = 0; i < props.data.length; i++) {
-    var first = {"Time": props.data[i].Time, "Distance": props.data[i].distance_00, "category": "First"}
-    var second = {"Time": props.data[i].Time, "Distance": props.data[i].distance_01, "category": "Second"}
-    var third = {"Time": props.data[i].Time, "Distance": props.data[i].distance_02, "category": "Third"}
+    var first = {"Time": props.data[i].Time, "Distance": props.data[i].distance_00, "category": "First Sensor"}
+    var second = {"Time": props.data[i].Time, "Distance": props.data[i].distance_01, "category": "Second Sensor"}
+    var third = {"Time": props.data[i].Time, "Distance": props.data[i].distance_02, "category": "Third Sensor"}
     data.push(first)
     data.push(second)
     data.push(third)
