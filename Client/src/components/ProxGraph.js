@@ -3,34 +3,38 @@ import ReactDOM from 'react-dom';
 import { Line } from '@ant-design/plots';
 
 const ProxGraph = (props) => {
-  // const [data, setData] = useState([]);
 
-  var data = props.data
-  // console.log(data)
-
+  var data = []
+  for (let i = 0; i < props.data.length; i++) {
+    var first = {"Time": props.data[i].Time, "Distance": props.data[i].distance_00, "category": "First"}
+    var second = {"Time": props.data[i].Time, "Distance": props.data[i].distance_01, "category": "Second"}
+    var third = {"Time": props.data[i].Time, "Distance": props.data[i].distance_02, "category": "Third"}
+    data.push(first)
+    data.push(second)
+    data.push(third)
+  }
+  console.log(data)
   var avg = 0
   var total = 0
   for (var i = 0; i < props.data.length; i++) {
-    total += props.data[i][props.y]
-    // console.log(total)
+    total += data[i]["Distance"]
   }
   avg = total/data.length
-  // console.log(avg)
 
   const config = {
     data,
     padding: 'auto',
     xField: props.x,
-    yField: props.y,
+    yField: "Distance",
+    seriesField: 'category',
     xAxis: {
-      // type: 'timeCat',
-      tickCount: 5,
-      // label: props.x,
+      type: 'time',
     },
     yAxis: {
       min: avg + 20,
       max: avg - 20,
     },
+    color: ['#1979C9', '#D62A0D', '#FAA219'],
   };
 
   return (

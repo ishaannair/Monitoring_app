@@ -102,7 +102,7 @@ const HomePage = (props) => {
                             </Col>
                         <Col span={8} align="middle">
                                 <Button className='button-test button-test2' style={{ color: "#ffffff", background: "#6AA4B0", width: "30vw", textAlign: 'center', fontSize: '5vh', margin: "10px", border: true, borderColor: "#2B4560", borderRadius: 10, height: '40vh' }} >
-                                    User Profile
+                                    Settings
                                 </Button>
                             </Col>
                         </Row>

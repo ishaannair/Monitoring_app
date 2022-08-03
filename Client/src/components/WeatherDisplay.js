@@ -121,7 +121,7 @@ function WeatherDisplay({ forecasts, selectedValue }) {
               border: true,
               borderColor: "#4b595e",
               textAlign: "middle",
-              height: "100%",
+              // height: "100%",
             }}
           >
             <Image src={cardImage} width={"25%"} />
