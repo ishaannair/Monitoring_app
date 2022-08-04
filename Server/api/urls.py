@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import RoomView,CreateRoomView,main,ChartView,index,sendPHBalancer
+from .views import RoomView,CreateRoomView,main,ChartView,index,sendPHBalancer,sendEnergyPower
 # import views
 from django.views.generic import TemplateView
 urlpatterns = [
@@ -10,5 +10,6 @@ urlpatterns = [
     path('',main),
     path('create-room', CreateRoomView.as_view()),
     path("index",index),
-    path("sendPHBalancer",sendPHBalancer)
+    path("sendPHBalancer",sendPHBalancer),
+    path("sendEnergyPower",sendEnergyPower),
 ]
