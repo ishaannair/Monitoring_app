@@ -20,14 +20,13 @@ import Chart from "react-apexcharts";
 import Tickets from "../reports/Tickets";
 import WeatherDisplay from "./WeatherDisplay";
 import ProxGraph from "./ProxGraph";
+import Background from "./background2.jpg"
 
 // import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
 // var graphData=require("./input.json");
 // var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
-var salt = require("./salt.json");
-var pH = require("./pH.json");
 // var proximity= require("./Proximity.json")
 // var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
@@ -128,6 +127,7 @@ const api = axios.create({
 function InsightsPage(props) {
   const [diagram, setDiagram] = useState("/Energy_HexaponicsLayout3.jpg");
   const [proximity, setProximity] = useState();
+  const [phData, setPhData] = useState();
   const [forecasts, setForecasts] = useState();
   const [lastMinute, setLastMinute] = useState();
 
@@ -186,14 +186,16 @@ function InsightsPage(props) {
     api.get("index?format=json").then((res) => {
       setProximity(res.data.data);
       pullData();
-
-      console.log("proximity", proximity);
+    });
+    api.get("sendPHBalancer?format=json").then((res) => {
+        setPhData(res.data.data)
+        // console.log("pH", res.data.data);
     });
   });
 
   return (
     <div>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh", backgroundImage: `url(${Background})`}}>
         <Header>
           <div className="logo" />
           <Menu
@@ -208,8 +210,8 @@ function InsightsPage(props) {
           <Tickets
             eInData={input}
             eOutData={output}
-            wPhData={pH}
-            wSaltData={salt}
+            wPhData={phData}
+            wSaltData={phData}
           />
           <p />
           <Row>
@@ -250,7 +252,7 @@ function InsightsPage(props) {
                   <Row className="padding">
                     <Col span={11}>
                       <Card title="Water pH" size="large" hoverable={true}>
-                        <Graph data={pH} x={"Time"} y={"pH"} />
+                        <Graph data={phData} x={"Time"} y={"pH"} />
                       </Card>
                     </Col>
                     <Col span={1}></Col>
@@ -260,7 +262,7 @@ function InsightsPage(props) {
                         size="large"
                         hoverable={true}
                       >
-                        <Graph data={salt} x={"Time"} y={"Salt"} />
+                        <Graph data={phData} x={"Time"} y={"TDS"} />
                       </Card>
                     </Col>
                   </Row>

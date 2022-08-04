@@ -6,6 +6,7 @@ import Graph from './Graph';
 import NavBar from './NewNav';
 import '../styles/result.css';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import Background from "./background2.jpg"
 
 var input = require("./input.json");
 var output = require("./output.json");
@@ -147,9 +148,7 @@ function ProfilePage(props) {
 
     return (
         <div>
-            {/* <Navbarfinal /> */}
-                <Layout style={{height:"100vh"}}>
-                    {/* <NavBar page={"/insights"}/> */}
+            <Layout style={{height:"100vh", backgroundImage: `url(${Background})`}}>
                 <Header>
                     <div className="logo" />
                     <Menu
@@ -160,73 +159,73 @@ function ProfilePage(props) {
                         onClick={onClick}
                     />
                 </Header>
-                    <Content className='content' style={{alignItems: "center"}}>
-                        <Col span={24} align="middle">
-                            <Button className='button-test button-test2' shape="circle" style={{ color: "#ffffff", background: "#6AA4B0", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle', border: true, borderColor: 'black' }}>
-                                Dino Chia
-                                {/* <img  src={Dino} style={{height: "100%", width: "100%", borderRadius: "10000%"}}/>  */}
-                            </Button>
-                            {/* <Upload
-                                name="avatar"
-                                listType="picture-card"
-                                className="avatar-uploader"
-                                showUploadList={false}
-                                action="https://cors-anywhere.herokuapp.com/https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                beforeUpload={beforeUpload}
-                                onChange={handleChange}
-                                >
-                                {imageUrl ? (
-                                    <img
-                                    src={imageUrl}
-                                    alt="avatar"
-                                    style={{
-                                        width: '100%',
-                                    }}
-                                    />
-                                ) : (
-                                    uploadButton
-                                )}
-                            </Upload> */}
-                        </Col>
-                        <Button onClick={enableForm}>{buttonText}</Button>                  
-                        <Form
-                            labelCol={{
-                                span: 4,
-                            }}
-                            wrapperCol={{
-                                span: 14,
-                            }}
-                            layout="horizontal"
-                            initialValues={{
-                                disabled: componentDisabled,
-                            }}
-                            style={{alignItems: 'centre'}}
-                            onValuesChange={onFormLayoutChange}
-                            disabled={componentDisabled}
+                <Content className='content' style={{alignItems: "center"}}>
+                    <Col span={24} align="middle">
+                        <Button className='button-test button-test2' shape="circle" style={{ color: "#6AA4B0", background: "#ffffff", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle', border: true, borderColor: 'black' }}>
+                            Dino Chia
+                            {/* <img  src={Dino} style={{height: "100%", width: "100%", borderRadius: "10000%"}}/>  */}
+                        </Button>
+                        {/* <Upload
+                            name="avatar"
+                            listType="picture-card"
+                            className="avatar-uploader"
+                            showUploadList={false}
+                            action="https://cors-anywhere.herokuapp.com/https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            beforeUpload={beforeUpload}
+                            onChange={handleChange}
                             >
-                            <Form.Item label="Name">
-                                <Input allowClear value={name} onChange={onChangeName} />
-                            </Form.Item>
-                            <Form.Item label="Email">
-                                <Input allowClear value={email} onChange={onChangeEmail} />
-                            </Form.Item>
-                            <Form.Item label="Date of Birth">
-                                <DatePicker value={date} onChange={onChangeDate} />
-                            </Form.Item>
-                            <Form.Item
-                                name="phone"
-                                label="Phone Number"
-                            >
-                                <Input
-                                addonBefore={prefixSelector}
+                            {imageUrl ? (
+                                <img
+                                src={imageUrl}
+                                alt="avatar"
                                 style={{
                                     width: '100%',
                                 }}
-                                allowClear onChange={onChange} />
-                            </Form.Item>
-                        </Form>
-                    </Content>
-                </Layout>
+                                />
+                            ) : (
+                                uploadButton
+                            )}
+                        </Upload> */}
+                    </Col>
+                    <Button onClick={enableForm}>{buttonText}</Button>                  
+                    <Form
+                        labelCol={{
+                            span: 4,
+                        }}
+                        wrapperCol={{
+                            span: 14,
+                        }}
+                        layout="horizontal"
+                        initialValues={{
+                            disabled: componentDisabled,
+                        }}
+                        style={{alignItems: 'centre'}}
+                        onValuesChange={onFormLayoutChange}
+                        disabled={componentDisabled}
+                        >
+                        <Form.Item label="Name">
+                            <Input allowClear value={name} onChange={onChangeName} />
+                        </Form.Item>
+                        <Form.Item label="Email">
+                            <Input allowClear value={email} onChange={onChangeEmail} />
+                        </Form.Item>
+                        <Form.Item label="Date of Birth">
+                            <DatePicker value={date} onChange={onChangeDate} />
+                        </Form.Item>
+                        <Form.Item
+                            name="phone"
+                            label="Phone Number"
+                        >
+                            <Input
+                            addonBefore={prefixSelector}
+                            style={{
+                                width: '100%',
+                            }}
+                            allowClear onChange={onChange} />
+                        </Form.Item>
+                    </Form>
+                </Content>
+            </Layout>
         </div >
     );
 }

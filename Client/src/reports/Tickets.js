@@ -7,21 +7,22 @@ var inTick = require("./tickets.json");
 
 const Tickets = (props) => {
   
-  const [energyInTickets, setEInTickets] = useState([]);
-  const [energyOutTickets, setEOutTickets] = useState([]);
-  const [waterPhTickets, setWPhTickets] = useState([]);
-  const [waterSaltTickets, setWSaltTickets] = useState([]);
+  const [energyInTickets, setEInTickets] = useState();
+  const [energyOutTickets, setEOutTickets] = useState();
+  const [waterPhTickets, setWPhTickets] = useState();
+  const [waterSaltTickets, setWSaltTickets] = useState();
   
+  // console.log(props.wSaltData)
   // const r = useRef(null);
   // Ref.current.innerHTML = cache; 
-
   useEffect(() => {
+    // console.log(props)
     const getAllTickets = async () => {
     //   try {
     //     const response = await axios.get("http://localhost:3000/tickets");
     //     setTickets(response.data.tickets);
     //   } catch (err) {
-    //     console.log("error");
+        // console.log(props.wPhData);
     //   }
     setEInTickets(props.eInData)
     setEOutTickets(props.eOutData)
@@ -29,8 +30,12 @@ const Tickets = (props) => {
     setWSaltTickets(props.wSaltData)
     };
     getAllTickets();
-  }, []);
-
+  });
+  
+  // console.log(energyInTickets)
+  // console.log(energyOutTickets)
+  // console.log(waterPhTickets)
+  // console.log(waterSaltTickets)
     // const reportTickets = tickets.filter(ticket => ticket.status === "completed");
   
   return (

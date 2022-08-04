@@ -25,6 +25,10 @@ const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSal
 
   var ref = document.getElementById("test");
   
+  console.log(energyInTickets)
+  console.log(energyOutTickets)
+  console.log(waterPhTickets)
+  console.log(waterSaltTickets)
   // for each ticket pass all its data into an array
   energyInTickets.forEach(ticket => {
     const ticketData = [
@@ -56,7 +60,7 @@ const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSal
   waterSaltTickets.forEach(ticket => {
     const ticketData = [
       ticket.Time,
-      ticket.Salt
+      ticket.TDS
     ];
     // push each tickcet's info into a row
     waterSaltRows.push(ticketData);
