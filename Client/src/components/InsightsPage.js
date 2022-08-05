@@ -27,6 +27,7 @@ var input = require("./input.json");
 // var graphData=require("./input.json");
 // var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
+var pH = require("./pH.json")
 // var proximity= require("./Proximity.json")
 // var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
@@ -124,15 +125,24 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8000/",
 });
 
+let endpoints = [
+    'http://127.0.0.1:8000/index',
+    'http://127.0.0.1:8000/sendPHBalancer',
+    'http://127.0.0.1:8000/sendEnergyPower',
+  ];
+
 function InsightsPage(props) {
   const [diagram, setDiagram] = useState("/Energy_HexaponicsLayout3.jpg");
   const [proximity, setProximity] = useState();
   const [phData, setPhData] = useState();
+  const [energyData, setEnergyData] = useState(input);
   const [forecasts, setForecasts] = useState();
   const [lastMinute, setLastMinute] = useState();
 
   if (proximity != null) {
-    series[0] = proximity[0]["distance_00"];
+    // series[0] = proximity[0]["distance_00"];
+    // series[1] = proximity[0]["distance_01"];
+    // series[2] = proximity[0]["distance_02"];
   }
 
   // const [input, setInput] = useState()
@@ -183,14 +193,32 @@ function InsightsPage(props) {
   };
 
   useEffect(() => {
+//     setTimeout(() => {
+//         console.log('Timeout')
+      
     api.get("index?format=json").then((res) => {
+        // console.log(res.data.data)
       setProximity(res.data.data);
       pullData();
     });
-    api.get("sendPHBalancer?format=json").then((res) => {
-        setPhData(res.data.data)
-        // console.log("pH", res.data.data);
-    });
+//     api.get("sendPHBalancer?format=json").then((res) => {
+//         setPhData(res.data.data)
+//         // console.log("pH", res.data.data);
+//     });
+//     api.get("sendEnergyPower?format=json").then((res) => {
+//         setEnergyData(res.data.data)
+//         // console.log("Energy", res.data.data);
+//     });
+// }, 5000);
+    // axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
+    //     (data) => {
+    //     console.log(data)
+    //     setProximity(data[0].data.data);
+    //     setPhData(data[1].data.data)
+    //     setEnergyData(data[2].data.data)
+
+    // },
+    // );
   });
 
   return (
@@ -209,9 +237,9 @@ function InsightsPage(props) {
         <Content className="content">
           <Tickets
             eInData={input}
-            eOutData={output}
-            wPhData={phData}
-            wSaltData={phData}
+            eOutData={input}
+            wPhData={pH}
+            wSaltData={pH}
           />
           <p />
           <Row>
@@ -236,14 +264,14 @@ function InsightsPage(props) {
                 <TabPane tab="Energy" key="1" >
                   <Row className="padding">
                     <Col span={11}>
-                      <Card title="Energy Input" size="large" hoverable={true}>
-                        <Graph data={input} x={"Time"} y={"Input"} />
+                      <Card title="Solar Power" size="large" hoverable={true}>
+                        <Graph data={input} x={"Time"} y={"Solar"} />
                       </Card>
                     </Col>
                     <Col span={1}></Col>
                     <Col span={11}>
-                      <Card title="Energy Output" size="large" hoverable={true}>
-                        <Graph data={output} x={"Time"} y={"Output"} />
+                      <Card title="Wind Turbine" size="large" hoverable={true}>
+                        <Graph data={input} x={"Time"} y={"Turbine"} />
                       </Card>
                     </Col>
                   </Row>
@@ -252,7 +280,7 @@ function InsightsPage(props) {
                   <Row className="padding">
                     <Col span={11}>
                       <Card title="Water pH" size="large" hoverable={true}>
-                        <Graph data={phData} x={"Time"} y={"pH"} />
+                        <Graph data={pH} x={"Time"} y={"pH"} />
                       </Card>
                     </Col>
                     <Col span={1}></Col>
@@ -262,7 +290,7 @@ function InsightsPage(props) {
                         size="large"
                         hoverable={true}
                       >
-                        <Graph data={phData} x={"Time"} y={"TDS"} />
+                        <Graph data={pH} x={"Time"} y={"TDS"} />
                       </Card>
                     </Col>
                   </Row>

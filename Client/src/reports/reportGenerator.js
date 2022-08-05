@@ -12,8 +12,8 @@ const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSal
   const doc = new jsPDF();
 
   // define the columns we want and their titles
-  const energyInColumns = ["Time", "Input"];
-  const energyOutColumns = ["Time", "Output"];
+  const energyInColumns = ["Time", "Solar"];
+  const energyOutColumns = ["Time", "Turbine"];
   const waterPhColumns = ["Time", "pH"];
   const waterSaltColumns = ["Time", "Salt"];
 
@@ -33,7 +33,7 @@ const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSal
   energyInTickets.forEach(ticket => {
     const ticketData = [
       ticket.Time,
-      ticket.Input
+      ticket.Solar
     ];
     // push each tickcet's info into a row
     energyInRows.push(ticketData);
@@ -42,7 +42,7 @@ const generatePDF = (energyInTickets, energyOutTickets, waterPhTickets, waterSal
   energyOutTickets.forEach(ticket => {
     const ticketData = [
       ticket.Time,
-      ticket.Output
+      ticket.Turbine
     ];
     // push each tickcet's info into a row
     energyOutRows.push(ticketData);

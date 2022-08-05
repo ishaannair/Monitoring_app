@@ -13,7 +13,7 @@ const ProxGraph = (props) => {
     data.push(second)
     data.push(third)
   }
-  console.log(data)
+  // console.log(data)
   var avg = 0
   var total = 0
   for (var i = 0; i < props.data.length; i++) {

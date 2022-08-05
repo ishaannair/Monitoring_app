@@ -7,7 +7,7 @@ const Graph = (props) => {
 
   var data = props.data
   // console.log(data)
-  
+
   var avg = 0
   var total = 0
   for (var i = 0; i < props.data.length; i++) {

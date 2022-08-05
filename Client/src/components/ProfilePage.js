@@ -187,7 +187,7 @@ function ProfilePage(props) {
                             )}
                         </Upload> */}
                     </Col>
-                    <Button onClick={enableForm}>{buttonText}</Button>                  
+                    {/* <Button onClick={enableForm}>{buttonText}</Button>                   */}
                     <Form
                         labelCol={{
                             span: 4,
