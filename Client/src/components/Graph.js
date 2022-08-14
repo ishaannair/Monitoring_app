@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Line } from '@ant-design/plots';
+import React from "react";
+import { Line } from "@ant-design/plots";
 
 const Graph = (props) => {
-  // const [data, setData] = useState([]);
+  var data = props.data;
 
-  var data = props.data
-  // console.log(data)
-
-  var avg = 0
-  var total = 0
+  var avg = 0;
+  var total = 0;
   for (var i = 0; i < props.data.length; i++) {
-    total += props.data[i][props.y]
-    // console.log(total)
+    total += props.data[i][props.y];
   }
-  avg = total/data.length
-  // console.log(avg)
+  avg = total / data.length;
 
   const config = {
     data,
-    padding: 'auto',
+    padding: "auto",
     xField: props.x,
     yField: props.y,
     xAxis: {
-      // type: 'timeCat',
       tickCount: 5,
-      // label: props.x,
     },
     yAxis: {
       min: avg + 20,
@@ -35,10 +27,9 @@ const Graph = (props) => {
 
   return (
     <div>
-        <Line {...config} />
+      <Line {...config} />
     </div>
   );
 };
 
-export default Graph
-// ReactDOM.render(<Graph />, document.getElementById('container'));
+export default Graph;

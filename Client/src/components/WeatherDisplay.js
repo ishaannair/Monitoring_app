@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Image } from "antd";
-import '../styles/result.css';
-// import "../App.css";
+import "../styles/result.css";
 import rain from "../rain.png";
 import partcloud from "../partcloud.png";
 import cloudy from "../cloudy.png";
@@ -18,14 +17,12 @@ function WeatherDisplay({ forecasts, selectedValue }) {
   const [cardForecast, setCardForecast] = useState("None");
 
   useEffect(() => {
-
     // Adjusts the weather display image, background, and text based on the data obtained
     if (forecasts === undefined) {
       setCardBack("#ffffff");
       setCardTextColor("#000000");
       setCardImage(sun);
-    }
-    else if (selectedValue != null) {
+    } else if (selectedValue != null) {
       let forecast = forecasts.find(
         (forecast) => forecast.area === selectedValue
       )?.forecast;
@@ -114,7 +111,7 @@ function WeatherDisplay({ forecasts, selectedValue }) {
       <Row align="middle" style={{ padding: "5px" }}>
         <Col span={24} align="middle">
           <Card
-          width={"100%"}
+            width={"100%"}
             style={{
               fontFamily: "pompiere",
               fontSize: "x-large",
@@ -123,7 +120,6 @@ function WeatherDisplay({ forecasts, selectedValue }) {
               border: true,
               borderColor: "#4b595e",
               textAlign: "middle",
-              // height: "100%",
             }}
           >
             <Image src={cardImage} width={"25%"} />
