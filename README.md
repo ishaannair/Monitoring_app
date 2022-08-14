@@ -93,12 +93,17 @@ This project runs using reactjs
    ```sh
    npm install
    ```
-3. Run the server
+3. Install Python packages
+   ``` sh
+   cd .\Server\
+   pip install -r requirements.txt
+
+4. Run the server
    ```sh
    cd .\Server\
    python .\manage.py runserver
    ```
-4. In a separate terminal, run the frontend
+5. In a separate terminal, run the frontend
    ```sh
    cd .\Client\
    npm start
