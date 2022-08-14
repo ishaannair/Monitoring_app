@@ -98,7 +98,7 @@ This project runs using reactjs
    cd .\Server\
    python .\manage.py runserver
    ```
-4. Run the frontend
+4. In a separate terminal, run the frontend
    ```sh
    cd .\Client\
    npm start
