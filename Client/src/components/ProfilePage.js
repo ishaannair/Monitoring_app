@@ -163,31 +163,9 @@ function ProfilePage(props) {
                     <Col span={24} align="middle">
                         <Button className='button-test button-test2' shape="circle" style={{ color: "#6AA4B0", background: "#ffffff", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle', border: true, borderColor: 'black' }}>
                             Dino Chia
-                            {/* <img  src={Dino} style={{height: "100%", width: "100%", borderRadius: "10000%"}}/>  */}
                         </Button>
-                        {/* <Upload
-                            name="avatar"
-                            listType="picture-card"
-                            className="avatar-uploader"
-                            showUploadList={false}
-                            action="https://cors-anywhere.herokuapp.com/https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                            beforeUpload={beforeUpload}
-                            onChange={handleChange}
-                            >
-                            {imageUrl ? (
-                                <img
-                                src={imageUrl}
-                                alt="avatar"
-                                style={{
-                                    width: '100%',
-                                }}
-                                />
-                            ) : (
-                                uploadButton
-                            )}
-                        </Upload> */}
                     </Col>
-                    {/* <Button onClick={enableForm}>{buttonText}</Button>                   */}
+                    {/* Form used to edit User Data */}
                     <Form
                         labelCol={{
                             span: 4,

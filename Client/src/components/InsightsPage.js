@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Content, Header } from "antd/lib/layout/layout";
 import {
   Layout,
@@ -15,21 +15,15 @@ import axios from "axios";
 import Graph from "./Graph";
 import "../styles/result.css";
 import Hexagon from "react-hexagon";
-import { test_hexagon } from "./platform/test_hexagon";
 import Chart from "react-apexcharts";
 import Tickets from "../reports/Tickets";
 import WeatherDisplay from "./WeatherDisplay";
 import ProxGraph from "./ProxGraph";
 import Background from "./background2.jpg"
 
-// import HexGridDemo from "./platform/Grid.js";
 var input = require("./input.json");
-// var graphData=require("./input.json");
-// var graphData=JSON.parse(localStorage.getItem("graph"));
 var output = require("./output.json");
 var pH = require("./pH.json")
-// var proximity= require("./Proximity.json")
-// var proximity=JSON.parse(localStorage.getItem("proximity")).data;
 const { TabPane } = Tabs;
 
 const color = [
@@ -163,13 +157,15 @@ function InsightsPage(props) {
     }
   };
   const pullData = () => {
-    console.log(moment().diff(lastMinute, "minutes"));
+    // console.log(moment().diff(lastMinute, "minutes"));
+
     if (lastMinute == null || moment().diff(lastMinute, "minutes") >= 5) {
       setLastMinute(moment());
       let combined = moment().format("YYYY-MM-DD[T]HH:mm:ss");
       let weatherURL =
         "https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=" +
         encodeURIComponent(combined);
+      // Code to pull the weather data from the government's open source API
       fetch(weatherURL)
         .then((res) => res.json())
         .then(
@@ -193,32 +189,21 @@ function InsightsPage(props) {
   };
 
   useEffect(() => {
-//     setTimeout(() => {
-//         console.log('Timeout')
-      
+    
+    // Database APIs are called to pull the various sensor data from the database and store it for display in the graphs
     api.get("index?format=json").then((res) => {
         // console.log(res.data.data)
       setProximity(res.data.data);
       pullData();
     });
-//     api.get("sendPHBalancer?format=json").then((res) => {
-//         setPhData(res.data.data)
-//         // console.log("pH", res.data.data);
-//     });
-//     api.get("sendEnergyPower?format=json").then((res) => {
-//         setEnergyData(res.data.data)
-//         // console.log("Energy", res.data.data);
-//     });
-// }, 5000);
-    // axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
-    //     (data) => {
-    //     console.log(data)
-    //     setProximity(data[0].data.data);
-    //     setPhData(data[1].data.data)
-    //     setEnergyData(data[2].data.data)
-
-    // },
-    // );
+    api.get("sendPHBalancer?format=json").then((res) => {
+        setPhData(res.data.data)
+        // console.log("pH", res.data.data);
+    });
+    api.get("sendEnergyPower?format=json").then((res) => {
+        setEnergyData(res.data.data)
+        // console.log("Energy", res.data.data);
+    });
   });
 
   return (
@@ -235,6 +220,8 @@ function InsightsPage(props) {
           />
         </Header>
         <Content className="content">
+          
+          {/* Monthly Report Generator */}
           <Tickets
             eInData={input}
             eOutData={input}
@@ -246,12 +233,16 @@ function InsightsPage(props) {
             <Col span={8}>
               <Row>
                 <Card size="large" hoverable={true}>
+
+                  {/* Changing diagram of the platform based on the selected graph category */}
                   <div>
                     <img src={diagram} alt="image" style={{ width: "100%" }} />
                   </div>
                 </Card>
               </Row>
               <Row>
+
+                {/* Weather Display to show the local weather at the platform. Currently it's set for "Changi" due to the initial development area */}
                 <WeatherDisplay
                   selectedValue={"Changi"}
                   forecasts={forecasts}
@@ -260,6 +251,8 @@ function InsightsPage(props) {
             </Col>
             <Col span={2} />
             <Col span={14}>
+
+              {/* Tabs pane for the various graphs in their categories */}
               <Tabs defaultActiveKey="1" onChange={onChange} minHeight={"100vh"}>
                 <TabPane tab="Energy" key="1" >
                   <Row className="padding">

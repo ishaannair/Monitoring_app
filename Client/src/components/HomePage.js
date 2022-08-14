@@ -3,7 +3,6 @@ import { Button, Layout, Row, Col, Menu, message, Upload } from 'antd';
 import { Content, Header } from 'antd/lib/layout/layout';
 import { useNavigate, Link } from "react-router-dom";
 import '../styles/result.css';
-import axios from 'axios'; 
 import Texty from 'rc-texty';
 import 'rc-texty/assets/index.css';
 import Background from "./background2.jpg"

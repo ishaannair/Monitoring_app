@@ -4,6 +4,7 @@ import { Line } from '@ant-design/plots';
 
 const ProxGraph = (props) => {
 
+  // Separating the data for each proximity sensor reading
   var data = []
   for (let i = 0; i < props.data.length; i++) {
     var first = {"Time": props.data[i].Time, "Distance": props.data[i].distance_00, "category": "First Sensor"}

@@ -18,6 +18,8 @@ function WeatherDisplay({ forecasts, selectedValue }) {
   const [cardForecast, setCardForecast] = useState("None");
 
   useEffect(() => {
+
+    // Adjusts the weather display image, background, and text based on the data obtained
     if (forecasts === undefined) {
       setCardBack("#ffffff");
       setCardTextColor("#000000");
