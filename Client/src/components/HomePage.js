@@ -1,92 +1,85 @@
 import React, {Component, useState, useEffect, useRef } from 'react';
-import Navbarfinal from './Navbar';
-import { Button, Layout, Switch, Table } from 'antd';
-import moment from "moment";
-import { useNavigate } from "react-router-dom";
-
+import { Button, Layout, Row, Col, Menu, message, Upload } from 'antd';
+import { Content, Header } from 'antd/lib/layout/layout';
+import { useNavigate, Link } from "react-router-dom";
+import '../styles/result.css';
+import Texty from 'rc-texty';
+import 'rc-texty/assets/index.css';
+import Background from "./background2.jpg"
+// import JSON;
+const items = [
+    {
+      label: 'Home Page',
+      key: '/',
+    },
+    {
+      label: 'Insights',
+      key: 'insights',
+    },
+    {
+        label: 'Profile Page',
+        key: 'profile',
+    },
+]
 
 const HomePage = (props) => {
     const navigate = useNavigate();
 
-
-    const columns = [
-        {
-            title: "Addr.",
-            dataIndex: "location",
-            key: "location",
-            width: "10%",
-        },
-        {
-            title: "Expiry",
-            dataIndex: "rectifyDate",
-            key: "rectifyDate",
-            width: "12%",
-            sorter: (a, b) => {
-                if (a.rectifyDate > b.rectifyDate) return 1;
-                else return -1;
-            },
-            defaultSortOrder: "descend",
-            render: (text) =>
-                moment(text, "YYYY-MM-DDTHH:mm:ss.SSS").format("DD/MM/YY"),
-        },
-        {
-            title: "Date",
-            dataIndex: "date",
-            key: "date",
-            width: "14%",
-            sorter: (a, b) => {
-                if (a.date > b.date) return 1;
-                else return -1;
-            },
-            render: (text) =>
-                moment(text, "YYYY-MM-DDTHH:mm:ss.SSS").format("DD/MM/YY"),
-        },
-        {
-            title: "Tenant ID",
-            dataIndex: "tenantID",
-            key: "itenantID",
-            width: "20%",
-        },
-        {
-            title: "Inst.",
-            dataIndex: "institution",
-            key: "institution",
-            width: "15%",
-        },
-        {
-            title: "Type",
-            dataIndex: "type",
-            key: "type",
-            width: "10%",
-        },
-        {
-            title: "Audit Score",
-            dataIndex: "total_score",
-            key: "total_score",
-            fixed: "right",
-            width: "10%",
-            sorter: (a, b) => {
-                if (a.score > b.score) return 1;
-                else return -1;
-            },
-        },
-    ];
     const handleSubmit = event => {
         event.preventDefault();
         }
         // this.props.history.push('/CreateQuestion') ;
-            
+    
+    const onClick = (e) => {
+        console.log('click ', e);
+        navigate(e.key);
+        };
+
     const routeChange = () =>{ 
         let path = `test`; 
         navigate(path);
         }
         
-            return (
+        return (
         <div>
-           <div >testing</div>
-           <Button onClick={() =>{ navigate("test")}}>Test</Button>
-            
-        </div>
+            <Layout style={{minHeight:"100vh", backgroundImage: `url(${Background})`}}>
+                <Header>
+                    <div className="logo" />
+                    <Menu
+                        color='black'
+                        theme="dark"
+                        mode="horizontal"
+                        defaultSelectedKeys={['/']}
+                        items={items}
+                        onClick={onClick}
+                    />
+                </Header>
+                <Content>
+                    <Row style={{height: "50vh", alignItems: "center"}}>
+                        <Col span={24} align="middle">
+                            <Texty style={{fontSize: "100px"}}>SeaForms</Texty>
+                        </Col>
+                    </Row>
+                    <Row align="middle" style={{}}>
+                        <Col span={8} align="middle">
+                            <Button className='button-test button-test2' shape="circle" style={{ color: "#6AA4B0", background: "#ffffff", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle' }} onClick={() =>{ navigate("profile")}}>
+                                User Profile
+                            </Button>
+                        </Col>
+                        <Col span={8} align="middle">
+                            <Button className='button-test button-test2' shape="circle" style={{ color: "#6AA4B0", background: "#ffffff", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle' }} onClick={() =>{ navigate("insights")}}>
+                                Data and Reports
+                            </Button>
+                        </Col>
+                        <Col span={8} align="middle">
+                            <Button className='button-test button-test2' shape="circle" style={{ color: "#6AA4B0", background: "#ffffff", width: "30vh", fontSize: '5vh', height: '30vh', verticalAlign: 'middle' }}>
+                                Settings
+                            </Button>
+                        </Col>
+                    </Row>
+                </Content>
+            </Layout>
+        </div >
     );
 }
 

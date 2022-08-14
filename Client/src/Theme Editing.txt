@@ -1,0 +1,25 @@
+To change Menu theme colour, edit in result.css (in styles folder):
+
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 64px;
+  background: #103000;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65);
+  background: #103000;
+}
+
+Text:
+.ant-menu-dark .ant-menu-item > span > a {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+
+Implementing full new theme:
+https://www.linkedin.com/pulse/baby-guide-overriding-antdesign-theme-color-chinedu-sunday-okorie-/
+
+box-shadow: 0 0 0 1px #08a615;
